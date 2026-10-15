@@ -1,0 +1,104 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    use_sim_time: true
+    jaka_kargo_full_robot_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+jaka_kargo_full_robot_controller:
+  ros__parameters:
+    joints:
+    - arm_lj1
+    - arm_lj2
+    - arm_lj3
+    - arm_lj4
+    - arm_lj5
+    - arm_lj6
+    - arm_lj7
+    - arm_rj1
+    - arm_rj2
+    - arm_rj3
+    - arm_rj4
+    - arm_rj5
+    - arm_rj6
+    - arm_rj7
+    - body_j1
+    - body_j2
+    - body_j3
+    - body_j4
+    - agv_x
+    - agv_y
+    - agv_yaw
+    command_interfaces:
+    - position
+    state_interfaces:
+    - position
+    - velocity
+    allow_partial_joints_goal: true
+    constraints:
+      goal_time: 5.0
+      stopped_velocity_tolerance: 0.05
+      arm_lj1:
+        trajectory: 0.15
+        goal: 0.025
+      arm_lj2:
+        trajectory: 0.15
+        goal: 0.025
+      arm_lj3:
+        trajectory: 0.15
+        goal: 0.025
+      arm_lj4:
+        trajectory: 0.15
+        goal: 0.025
+      arm_lj5:
+        trajectory: 0.15
+        goal: 0.025
+      arm_lj6:
+        trajectory: 0.15
+        goal: 0.025
+      arm_lj7:
+        trajectory: 0.15
+        goal: 0.025
+      arm_rj1:
+        trajectory: 0.15
+        goal: 0.025
+      arm_rj2:
+        trajectory: 0.15
+        goal: 0.025
+      arm_rj3:
+        trajectory: 0.15
+        goal: 0.025
+      arm_rj4:
+        trajectory: 0.15
+        goal: 0.025
+      arm_rj5:
+        trajectory: 0.15
+        goal: 0.025
+      arm_rj6:
+        trajectory: 0.15
+        goal: 0.025
+      arm_rj7:
+        trajectory: 0.15
+        goal: 0.025
+      body_j1:
+        trajectory: 0.15
+        goal: 0.025
+      body_j2:
+        trajectory: 0.15
+        goal: 0.025
+      body_j3:
+        trajectory: 0.15
+        goal: 0.025
+      body_j4:
+        trajectory: 0.15
+        goal: 0.025
+      agv_x:
+        trajectory: 0.15
+        goal: 0.025
+      agv_y:
+        trajectory: 0.15
+        goal: 0.025
+      agv_yaw:
+        trajectory: 0.15
+        goal: 0.025

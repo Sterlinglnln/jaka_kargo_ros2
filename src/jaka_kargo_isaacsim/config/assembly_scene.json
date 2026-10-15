@@ -1,0 +1,117 @@
+{
+  "frame": "world",
+  "robot_prim": "/World/jaka_kargo",
+  "articulation_root": "/World/jaka_kargo/root_joint",
+  "flange_prim": "/World/jaka_kargo/arm_lj7_link",
+  "tcp_offset": [
+    0.0,
+    0.0,
+    0.2
+  ],
+  "physics_dt": 0.005,
+  "rendering_dt": 0.02,
+  "friction": [
+    0.8,
+    0.6
+  ],
+  "grasp_distance": 0.025,
+  "objects": {
+    "ground": {
+      "position": [
+        0.0,
+        0.0,
+        -0.36
+      ],
+      "size": [
+        6.0,
+        6.0,
+        0.08
+      ],
+      "color": [
+        0.25,
+        0.25,
+        0.25
+      ]
+    },
+    "workbench": {
+      "position": [
+        0.68,
+        0.15,
+        0.0
+      ],
+      "size": [
+        0.5,
+        1.2,
+        0.6
+      ],
+      "color": [
+        0.45,
+        0.45,
+        0.5
+      ]
+    },
+    "assembly_base": {
+      "position": [
+        0.52,
+        0.05,
+        0.32
+      ],
+      "size": [
+        0.14,
+        0.14,
+        0.04
+      ],
+      "color": [
+        0.2,
+        0.3,
+        0.7
+      ]
+    },
+    "part_a": {
+      "position": [
+        0.52,
+        0.45,
+        0.333
+      ],
+      "size": [
+        0.06,
+        0.06,
+        0.06
+      ],
+      "mass": 0.2,
+      "color": [
+        0.85,
+        0.25,
+        0.1
+      ]
+    }
+  },
+  "target_position": [
+    0.52,
+    0.05,
+    0.37
+  ],
+  "target_tolerance": 0.015,
+  "target_orientation_tolerance": 0.15,
+  "tool_orientation_xyzw": [
+    0.0,
+    1.0,
+    0.0,
+    0.0
+  ],
+  "right_ready_position": [
+    0.5,
+    -0.3,
+    0.48
+  ],
+  "approach_distance": 0.12,
+  "lift_distance": 0.15,
+  "velocity_scaling": 0.3,
+  "acceleration_scaling": 0.3,
+  "precision_velocity_scaling": 0.1,
+  "precision_acceleration_scaling": 0.1,
+  "joint_drive": {
+    "stiffness": 20000.0,
+    "damping": 1000.0
+  }
+}

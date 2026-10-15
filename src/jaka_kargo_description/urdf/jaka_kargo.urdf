@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="jaka_kargo">
+  <link name="world" />
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.141704961762439 -0.000609630517811852 -0.111566924212777"
+        rpy="0 0 0" />
+      <mass
+        value="130.512640281208" />
+      <inertia
+        ixx="4.55431791409923"
+        ixy="0.0257710820402867"
+        ixz="-0.0279347731575294"
+        iyy="7.37183328930968"
+        iyz="-0.0272970528374829"
+        izz="10.4653202521088" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- <joint 
+    name="fixed" 
+    type="fixed">
+    <parent 
+      link="world"/>
+    <child 
+      link="base_link"/>
+  </joint> -->
+  <!-- Fake AGV base joints for MoveIt fast-path integration -->
+  <link name="agv_x_link"/>
+  <joint name="agv_x" type="prismatic">
+    <parent link="world"/>
+    <child link="agv_x_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-20.0" upper="20.0" effort="1000" velocity="0.5"/>
+  </joint>
+
+  <link name="agv_xy_link"/>
+  <joint name="agv_y" type="prismatic">
+    <parent link="agv_x_link"/>
+    <child link="agv_xy_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-20.0" upper="20.0" effort="1000" velocity="0.5"/>
+  </joint>
+
+  <joint name="agv_yaw" type="revolute">
+    <parent link="agv_xy_link"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.1415926" upper="3.1415926" effort="1000" velocity="1.57"/>
+  </joint>
+  <link
+    name="q_wheel_x_link">
+    <inertial>
+      <origin
+        xyz="-4.11923389842528E-09 -1.11694803406337E-09 0.103465509275845"
+        rpy="0 0 0" />
+      <mass
+        value="0.785339554840708" />
+      <inertia
+        ixx="0.00308939784019361"
+        ixy="5.17304098957238E-11"
+        ixz="4.96196176433988E-11"
+        iyy="0.00309418933601937"
+        iyz="-1.24717430385355E-11"
+        izz="0.000474989691670453" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/q_wheel_x_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/q_wheel_x_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_3"
+    type="revolute">
+    <origin
+      xyz="0.153 0.1975 -0.0990000000000054"
+      rpy="3.14159265358979 0 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="q_wheel_x_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="q_wheel_q_link">
+    <inertial>
+      <origin
+        xyz="1.75970349403087E-14 -2.08166817117217E-16 -4.71844785465692E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.794411429544822" />
+      <inertia
+        ixx="0.0012498382871177"
+        ixy="-7.90620342222098E-35"
+        ixz="-2.56199824952339E-20"
+        iyy="0.0012498382871177"
+        iyz="-1.32691983635937E-20"
+        izz="0.00223207369371143" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/q_wheel_q_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/q_wheel_q_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.138999999999994"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="q_wheel_x_link" />
+    <child
+      link="q_wheel_q_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="h_wheel_x_link">
+    <inertial>
+      <origin
+        xyz="4.11923400944758E-09 1.11694800630779E-09 0.103465509275845"
+        rpy="0 0 0" />
+      <mass
+        value="0.785339554840708" />
+      <inertia
+        ixx="0.00308939784019361"
+        ixy="5.1730409959755E-11"
+        ixz="-4.96196176573177E-11"
+        iyy="0.00309418933601937"
+        iyz="1.24717428784332E-11"
+        izz="0.000474989691670454" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/h_wheel_x_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/h_wheel_x_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_4"
+    type="revolute">
+    <origin
+      xyz="-0.427 -0.1975 -0.0990000000000054"
+      rpy="3.14159265358979 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="h_wheel_x_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="h_wheel_q_link">
+    <inertial>
+      <origin
+        xyz="-6.10622663543836E-16 2.77555756156289E-17 -6.93889390390723E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.794411429544822" />
+      <inertia
+        ixx="0.0012498382871177"
+        ixy="1.24005623478029E-19"
+        ixz="-2.29635760509673E-18"
+        iyy="0.0012498382871177"
+        iyz="1.15672296880786E-19"
+        izz="0.00223207369371142" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/h_wheel_q_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/h_wheel_q_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.138999999999995"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="h_wheel_x_link" />
+    <child
+      link="h_wheel_q_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="q_wheel_w_link">
+    <inertial>
+      <origin
+        xyz="0 2.77555756156289E-17 -0.0522021955806991"
+        rpy="0 0 0" />
+      <mass
+        value="0.399115828829937" />
+      <inertia
+        ixx="0.000479949648735608"
+        ixy="1.528629771998E-20"
+        ixz="6.93101240932377E-22"
+        iyy="0.000479949648735608"
+        iyz="2.52590988414871E-20"
+        izz="0.000239885726427194" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/q_wheel_w_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/q_wheel_w_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_5"
+    type="continuous">
+    <origin
+      xyz="0.153 -0.1975 -0.207"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="q_wheel_w_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="h_wheel_w_link">
+    <inertial>
+      <origin
+        xyz="0 0 -0.052202195580699"
+        rpy="0 0 0" />
+      <mass
+        value="0.399115828829937" />
+      <inertia
+        ixx="0.000479949648735608"
+        ixy="1.528629771998E-20"
+        ixz="6.93101240932378E-22"
+        iyy="0.000479949648735608"
+        iyz="2.52590988414871E-20"
+        izz="0.000239885726427194" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/h_wheel_w_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/h_wheel_w_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wheel_6"
+    type="continuous">
+    <origin
+      xyz="-0.427 0.1975 -0.207"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="h_wheel_w_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="radar_r_link">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 -8.32667268468867E-17 0.00850000000000012"
+        rpy="0 0 0" />
+      <mass
+        value="0.0173915767921936" />
+      <inertia
+        ixx="2.42525060316059E-06"
+        ixy="8.88640084284205E-37"
+        ixz="9.08877628731946E-22"
+        iyy="2.42525060316059E-06"
+        iyz="-1.0515477229273E-21"
+        izz="1.34975534043848E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/radar_r_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/radar_r_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="radar_1"
+    type="fixed">
+    <origin
+      xyz="0.18919999999982 -0.226200000000231 -0.0270000000000001"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="radar_r_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="radar_l_link">
+    <inertial>
+      <origin
+        xyz="0 8.32667268468867E-17 0.00850000000000006"
+        rpy="0 0 0" />
+      <mass
+        value="0.0173915767921935" />
+      <inertia
+        ixx="2.42525060316058E-06"
+        ixy="-1.05621993708082E-54"
+        ixz="8.16351404007777E-38"
+        iyy="2.42525060316058E-06"
+        iyz="4.39072633523052E-39"
+        izz="1.34975534043848E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/radar_l_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/radar_l_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="radar_2"
+    type="fixed">
+    <origin
+      xyz="-0.463200000000028 0.226199999999972 -0.0270000000000001"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="radar_l_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="radar_3d_link">
+    <inertial>
+      <origin
+        xyz="2.77555756156289E-17 -5.32282452371748E-20 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.00950816080674812" />
+      <inertia
+        ixx="9.34257820115813E-07"
+        ixy="1.12011057891388E-40"
+        ixz="-4.15564938231533E-23"
+        iyy="9.34257820115813E-07"
+        iyz="4.68650915267468E-40"
+        izz="4.7102682213179E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/radar_3d_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/radar_3d_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="radar_3"
+    type="fixed">
+    <origin
+      xyz="-0.27366 0 1.377"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="radar_3d_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="body_j1_link">
+    <inertial>
+      <origin
+        xyz="0.0051614945853764 -0.000980400149197012 -0.01224186848696"
+        rpy="0 0 0" />
+      <mass
+        value="14.5550705585876" />
+      <inertia
+        ixx="0.0819400821391104"
+        ixy="-0.00175251331606626"
+        ixz="-0.000372393589488698"
+        iyy="0.0653496776699367"
+        iyz="-0.00836891740612124"
+        izz="0.0746001354260714" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_j1"
+    type="prismatic">
+    <origin
+      xyz="0.018341 0 0.1943"
+      rpy="-3.1416 -1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="body_j1_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0.78"
+      effort="1350"
+      velocity="0.1" />
+  </joint>
+  <link
+    name="body_j2_link">
+    <inertial>
+      <origin
+        xyz="0.00356272377089609 -0.179867490317962 -0.000181570287686086"
+        rpy="0 0 0" />
+      <mass
+        value="11.8071087615657" />
+      <inertia
+        ixx="0.0760026637937027"
+        ixy="-0.0037047003190253"
+        ixz="8.16375193149872E-06"
+        iyy="0.0461224133858588"
+        iyz="5.97032398627859E-06"
+        izz="0.061501023418053" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_j2"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 -1.5708 0" />
+    <parent
+      link="body_j1_link" />
+    <child
+      link="body_j2_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="1.5707"
+      effort="281"
+      velocity="1.5708" />
+  </joint>
+  <link
+    name="camera_1_link">
+    <inertial>
+      <origin
+        xyz="-2.63392011502495E-05 5.68892124452836E-05 0.013057264464305"
+        rpy="0 0 0" />
+      <mass
+        value="0.089349902292875" />
+      <inertia
+        ixx="0.000108561501975541"
+        ixy="-8.72098701788452E-08"
+        ixz="-1.01367379383744E-08"
+        iyy="1.08735008917201E-05"
+        iyz="5.90127339915226E-08"
+        izz="0.000109528628305252" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/camera_1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/camera_1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_1"
+    type="fixed">
+    <origin
+      xyz="0.061 -0.119 -0.0002"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="body_j2_link" />
+    <child
+      link="camera_1_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="body_j3_link">
+    <inertial>
+      <origin
+        xyz="4.95053453738181E-05 0.00060123803266873 0.0500757792142054"
+        rpy="0 0 0" />
+      <mass
+        value="2.1923611998553" />
+      <inertia
+        ixx="0.00839031285138445"
+        ixy="-2.39763996588931E-05"
+        ixz="-5.14401999971527E-06"
+        iyy="0.00811169866631836"
+        iyz="-6.22436161643848E-05"
+        izz="0.00172132534434517" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j3_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_j3"
+    type="revolute">
+    <origin
+      xyz="0 -0.3054 -0.0002"
+      rpy="1.5708 0 0" />
+    <parent
+      link="body_j2_link" />
+    <child
+      link="body_j3_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="19"
+      velocity="1.5708" />
+  </joint>
+  <link
+    name="body_j4_link">
+    <inertial>
+      <origin
+        xyz="0.0110507632851783 -0.0326018807830946 0.000266423249911878"
+        rpy="0 0 0" />
+      <mass
+        value="0.623251763320113" />
+      <inertia
+        ixx="0.00261521007091393"
+        ixy="6.80937163564959E-05"
+        ixz="2.76236851041378E-06"
+        iyy="0.0031793629553716"
+        iyz="-4.11700148602306E-06"
+        izz="0.00179604212659268" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j4_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/body_j4_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="body_j4"
+    type="revolute">
+    <origin
+      xyz="1.65247295646487E-05 0.000200000000064386 0.0949999999999904"
+      rpy="-1.5707963267949 0 -0.0824363994279264" />
+    <parent
+      link="body_j3_link" />
+    <child
+      link="body_j4_link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.3491"
+      upper="0.7854"
+      effort="19"
+      velocity="1.5708" />
+  </joint>
+  <link
+    name="camera_2_link">
+    <inertial>
+      <origin
+        xyz="-2.63392011491392E-05 5.68892124452863E-05 0.013057264464305"
+        rpy="0 0 0" />
+      <mass
+        value="0.0893499022928749" />
+      <inertia
+        ixx="0.000108561501975541"
+        ixy="-8.720987017882E-08"
+        ixz="-1.01367379383893E-08"
+        iyy="1.08735008917201E-05"
+        iyz="5.90127339915209E-08"
+        izz="0.000109528628305252" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/camera_2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/camera_2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_2"
+    type="fixed">
+    <origin
+      xyz="0.0339999999999933 -0.0530000000000007 -0.000200681505657571"
+      rpy="1.5707963267949 0 1.5707963267949" />
+    <parent
+      link="body_j4_link" />
+    <child
+      link="camera_2_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="arm_rj1_link">
+    <inertial>
+      <origin
+        xyz="-3.44337482124923E-07 1.83475565618263E-06 0.1573087968999"
+        rpy="0 0 0" />
+      <mass
+        value="0.556662347813879" />
+      <inertia
+        ixx="0.00118084306383206"
+        ixy="-1.21652871519313E-08"
+        ixz="-2.44596034078378E-08"
+        iyy="0.00143862694636624"
+        iyz="-1.66813106746515E-08"
+        izz="0.000800206575640854" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_rj1"
+    type="revolute">
+    <origin
+      xyz="0.00470834833541592 -0.239999999669298 -0.0497000000008027"
+      rpy="3.14159265234577 -0.52359877559595 0" />
+    <parent
+      link="body_j2_link" />
+    <child
+      link="arm_rj1_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="66"
+      velocity="1.5708" />
+  </joint>
+  <link
+    name="arm_rj2_link">
+    <inertial>
+      <origin
+        xyz="1.44853794689509E-05 -0.0453017722715171 -0.000764961094759875"
+        rpy="0 0 0" />
+      <mass
+        value="0.961807814148782" />
+      <inertia
+        ixx="0.00350518754332577"
+        ixy="1.19569254731843E-06"
+        ixz="-5.68626346538998E-09"
+        iyy="0.00209477715179096"
+        iyz="3.33062563234637E-05"
+        izz="0.00266142970050144" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_rj2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.202999999999558"
+      rpy="-1.5707963267949 0 -3.14159265305106" />
+    <parent
+      link="arm_rj1_link" />
+    <child
+      link="arm_rj2_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.8326"
+      upper="1.8326"
+      effort="66"
+      velocity="1.5708" />
+  </joint>
+  <link
+    name="arm_rj3_link">
+    <inertial>
+      <origin
+        xyz="0.00645518009607859 0.000442934442427823 0.240178349386207"
+        rpy="0 0 0" />
+      <mass
+        value="1.36253546451272" />
+      <inertia
+        ixx="0.00769632405015404"
+        ixy="3.79958035388288E-07"
+        ixz="-0.000116577801460757"
+        iyy="0.00776145734676962"
+        iyz="6.29916464902913E-06"
+        izz="0.00147394856531131" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj3_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_rj3"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.57079746215332 0 0" />
+    <parent
+      link="arm_rj2_link" />
+    <child
+      link="arm_rj3_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="64"
+      velocity="2.0944" />
+  </joint>
+  <link
+    name="arm_rj4_link">
+    <inertial>
+      <origin
+        xyz="0.00464534122285559 -0.0316045423990212 2.91494834327999E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.524473554546553" />
+      <inertia
+        ixx="0.00134996077756487"
+        ixy="5.70135020621877E-05"
+        ixz="6.58770051710615E-08"
+        iyy="0.000802828430622434"
+        iyz="2.86150737741691E-06"
+        izz="0.00100052509242991" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj4_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj4_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_rj4"
+    type="revolute">
+    <origin
+      xyz="-0.000400273782725766 0.000400599423920567 0.341500117255216"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="arm_rj3_link" />
+    <child
+      link="arm_rj4_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.3562"
+      upper="0.5236"
+      effort="37"
+      velocity="2.0944" />
+  </joint>
+  <link
+    name="arm_rj5_link">
+    <inertial>
+      <origin
+        xyz="-4.98176307317522E-07 0.00375436433662013 0.182029997147385"
+        rpy="0 0 0" />
+      <mass
+        value="0.795157721674083" />
+      <inertia
+        ixx="0.00185689807785166"
+        ixy="-2.96245009291167E-09"
+        ixz="1.72226753611246E-08"
+        iyy="0.0018879036816409"
+        iyz="-0.000131561116532345"
+        izz="0.000682529901318337" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj5_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj5_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_rj5"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.57079662831086 0 0" />
+    <parent
+      link="arm_rj4_link" />
+    <child
+      link="arm_rj5_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="19"
+      velocity="2.618" />
+  </joint>
+  <link
+    name="arm_rj6_link">
+    <inertial>
+      <origin
+        xyz="1.17863133419771E-08 -0.0815990046735313 0.00603511131678902"
+        rpy="0 0 0" />
+      <mass
+        value="0.576576632917431" />
+      <inertia
+        ixx="0.00135089825517267"
+        ixy="2.55696978476929E-09"
+        ixz="1.30379725725163E-10"
+        iyy="0.00051827467051615"
+        iyz="-0.000255243469505033"
+        izz="0.00128539417038809" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj6_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj6_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_rj6"
+    type="revolute">
+    <origin
+      xyz="0 0.00133294267563855 0.231935198030161"
+      rpy="-1.5707963267949 0 -3.14159249457812" />
+    <parent
+      link="arm_rj5_link" />
+    <child
+      link="arm_rj6_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.8326"
+      upper="1.8326"
+      effort="19"
+      velocity="2.618" />
+  </joint>
+  <link
+    name="arm_rj7_link">
+    <inertial>
+      <origin
+        xyz="1.25064293643451E-09 -3.16523626360254E-05 0.166613540986882"
+        rpy="0 0 0" />
+      <mass
+        value="0.236737677400848" />
+      <inertia
+        ixx="0.000137023433905555"
+        ixy="-1.90372241401969E-20"
+        ixz="-2.87251012663121E-18"
+        iyy="0.000137211005328673"
+        iyz="1.5920100079256E-07"
+        izz="0.000189876557869699" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj7_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_rj7_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_rj7"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="arm_rj6_link" />
+    <child
+      link="arm_rj7_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="19"
+      velocity="2.618" />
+  </joint>
+  <link name="arm_r_tcp"/>
+  <joint name="arm_r_tcp_joint" type="fixed">
+    <parent link="arm_rj7_link"/>
+    <child link="arm_r_tcp"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+  </joint>
+  <link
+    name="arm_lj1_link">
+    <inertial>
+      <origin
+        xyz="3.44337482527379E-07 -1.83475565440627E-06 0.157308796899901"
+        rpy="0 0 0" />
+      <mass
+        value="0.556662347813916" />
+      <inertia
+        ixx="0.00118084306383213"
+        ixy="-1.21651483013739E-08"
+        ixz="2.44596033952608E-08"
+        iyy="0.00143862694636635"
+        iyz="1.66813106444699E-08"
+        izz="0.000800206575640938" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj1_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj1_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_lj1"
+    type="revolute">
+    <origin
+      xyz="0.00470834833564851 -0.239999999669298 0.0492999999991973"
+      rpy="0 -0.523598775600649 3.14159265358979" />
+    <parent
+      link="body_j2_link" />
+    <child
+      link="arm_lj1_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="66"
+      velocity="1.5708" />
+  </joint>
+  <link
+    name="arm_lj2_link">
+    <inertial>
+      <origin
+        xyz="1.4485379468368E-05 -0.0453017722715209 -0.000764961094756877"
+        rpy="0 0 0" />
+      <mass
+        value="0.961807814148781" />
+      <inertia
+        ixx="0.00350518754332577"
+        ixy="1.19569254716446E-06"
+        ixz="-5.68626343733855E-09"
+        iyy="0.00209477715179088"
+        iyz="3.3306256323256E-05"
+        izz="0.00266142970050157" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj2_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj2_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_lj2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.202999999999558"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="arm_lj1_link" />
+    <child
+      link="arm_lj2_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.8326"
+      upper="1.8326"
+      effort="66"
+      velocity="1.5708" />
+  </joint>
+  <link
+    name="arm_lj3_link">
+    <inertial>
+      <origin
+        xyz="0.00645518038660595 0.000442930207593339 0.240178349386251"
+        rpy="0 0 0" />
+      <mass
+        value="1.3625354645121" />
+      <inertia
+        ixx="0.00769632405065209"
+        ixy="3.8000076490815E-07"
+        ixz="-0.000116577797334407"
+        iyy="0.00776145734626103"
+        iyz="6.29924112928846E-06"
+        izz="0.00147394856531074" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj3_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj3_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_lj3"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.57079746215332 0 0" />
+    <parent
+      link="arm_lj2_link" />
+    <child
+      link="arm_lj3_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="64"
+      velocity="2.0944" />
+  </joint>
+  <link
+    name="arm_lj4_link">
+    <inertial>
+      <origin
+        xyz="0.00464534373121095 -0.0316045481957464 2.91281777522467E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.524473517277118" />
+      <inertia
+        ixx="0.00134996050171305"
+        ixy="5.70134445699396E-05"
+        ixz="6.58471402473906E-08"
+        iyy="0.000802828413602643"
+        iyz="2.86206931857427E-06"
+        izz="0.00100052490938381" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj4_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj4_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_lj4"
+    type="revolute">
+    <origin
+      xyz="-0.000400273519917158 0.000400600664341555 0.341500117255216"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="arm_lj3_link" />
+    <child
+      link="arm_lj4_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.3562"
+      upper="0.5236" 
+      effort="37"
+      velocity="2.0944" />
+  </joint>
+  <link
+    name="arm_lj5_link">
+    <inertial>
+      <origin
+        xyz="3.49149932521442E-07 -0.00455419831820647 0.182029909022039"
+        rpy="0 0 0" />
+      <mass
+        value="0.795161200903781" />
+      <inertia
+        ixx="0.00185693827075133"
+        ixy="-4.13400624652727E-09"
+        ixz="-1.97270869446819E-08"
+        iyy="0.00188793574334785"
+        iyz="0.000131556172590506"
+        izz="0.000682524955346887" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj5_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj5_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_lj5"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.57079662831086 0 0" />
+    <parent
+      link="arm_lj4_link" />
+    <child
+      link="arm_lj5_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="19"
+      velocity="2.618" />
+  </joint>
+  <link
+    name="arm_lj6_link">
+    <inertial>
+      <origin
+        xyz="-1.73259997029995E-07 -0.081598959406494 0.00603516541477145"
+        rpy="0 0 0" />
+      <mass
+        value="0.576577893328043" />
+      <inertia
+        ixx="0.00135089916745133"
+        ixy="4.3405465901612E-09"
+        ixz="2.91377497278429E-09"
+        iyy="0.000518276366720033"
+        iyz="-0.000255244068395688"
+        izz="0.00128539468862913" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj6_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj6_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_lj6"
+    type="revolute">
+    <origin
+      xyz="0 -0.00213275470159946 0.231935198030176"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="arm_lj5_link" />
+    <child
+      link="arm_lj6_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.8326"
+      upper="1.8326"
+      effort="19"
+      velocity="2.618" />
+  </joint>
+  <link
+    name="arm_lj7_link">
+    <inertial>
+      <origin
+        xyz="1.25080372448405E-09 3.16523626350262E-05 0.166613540986882"
+        rpy="0 0 0" />
+      <mass
+        value="0.236737677400848" />
+      <inertia
+        ixx="0.000137023433905555"
+        ixy="1.44957424677523E-21"
+        ixz="3.37505946020058E-18"
+        iyy="0.000137211005328673"
+        iyz="-1.59201000792913E-07"
+        izz="0.000189876557869699" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj7_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jaka_kargo_description/meshes/jaka_kargo_meshes/arm_lj7_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="arm_lj7"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="arm_lj6_link" />
+    <child
+      link="arm_lj7_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-6.2832"
+      upper="6.2832"
+      effort="19"
+      velocity="2.618" />
+  </joint>
+  <link name="arm_l_tcp"/>
+  <joint name="arm_l_tcp_joint" type="fixed">
+    <parent link="arm_lj7_link"/>
+    <child link="arm_l_tcp"/>
+    <origin xyz="0 0 0.2" rpy="0 0 0"/>
+  </joint>
+</robot>

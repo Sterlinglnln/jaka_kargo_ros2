@@ -1,0 +1,7 @@
+# ros2 colcon build output
+build/
+install/
+log/
+
+# vscode settings
+.vscode/
